@@ -55,6 +55,9 @@ public class NetworkActivityLogger {
     /// The shared network activity logger for the system.
     public static let shared = NetworkActivityLogger()
     
+    /// The DBox Network Logger that prints all requests & responses to a textfile ('networklog.txt')
+    public static var networkLog = DBoxNetworkLog()
+    
     /// The level of logging detail. See NetworkActivityLoggerLevel enum for possible values. .info by default.
     public var level: NetworkActivityLoggerLevel
     
@@ -123,13 +126,13 @@ public class NetworkActivityLogger {
                 let cURL = dataRequest.cURLDescription()
                 
                 self.logDivider()
-                
+                NetworkActivityLogger.dBoxNetworkPrint("\(httpMethod) '\(requestURL.absoluteString)':")
                 print("\(httpMethod) '\(requestURL.absoluteString)':")
                 
                 print("cURL:\n\(cURL)")
             case .info:
                 self.logDivider()
-                
+                NetworkActivityLogger.dBoxNetworkPrint("\(httpMethod) '\(requestURL.absoluteString)':")
                 print("\(httpMethod) '\(requestURL.absoluteString)'")
             default:
                 break
@@ -160,6 +163,8 @@ public class NetworkActivityLogger {
                 case .debug, .info, .warn, .error:
                     self.logDivider()
                     
+                    NetworkActivityLogger.dBoxNetworkPrint("[Error] \(httpMethod) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
+                    NetworkActivityLogger.dBoxNetworkPrint(error)
                     print("[Error] \(httpMethod) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
                     print(error)
                 default:
@@ -174,6 +179,8 @@ public class NetworkActivityLogger {
                 case .debug:
                     self.logDivider()
                     
+                    NetworkActivityLogger.dBoxNetworkPrint("\(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
+                    logHeaders(headers: response.allHeaderFields)
                     print("\(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
                     
                     self.logHeaders(headers: response.allHeaderFields)
@@ -187,16 +194,18 @@ public class NetworkActivityLogger {
                         let prettyData = try JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
                         
                         if let prettyString = String(data: prettyData, encoding: .utf8) {
+                            NetworkActivityLogger.dBoxNetworkPrint(prettyString)
                             print(prettyString)
                         }
                     } catch {
                         if let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) {
+                            NetworkActivityLogger.dBoxNetworkPrint(string)
                             print(string)
                         }
                     }
                 case .info:
                     self.logDivider()
-                    
+                    NetworkActivityLogger.dBoxNetworkPrint("\(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]")
                     print("\(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]")
                 default:
                     break
@@ -204,6 +213,9 @@ public class NetworkActivityLogger {
             }
         }
         
+    }
+    public static func dBoxNetworkPrint(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+        debugPrint(items, separator: separator, terminator: terminator, to: &NetworkActivityLogger.networkLog)
     }
 }
 
