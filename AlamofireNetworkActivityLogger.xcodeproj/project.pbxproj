@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		51084F3B279AF0EE005618E5 /* DBoxNetworkLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51084F3A279AF0EE005618E5 /* DBoxNetworkLog.swift */; };
 		AB2A9A301DBB4600004FC92E /* AlamofireNetworkActivityLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = AB2A9A2E1DBB4600004FC92E /* AlamofireNetworkActivityLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AB2A9A3A1DBB46C1004FC92E /* NetworkActivityLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB2A9A391DBB46C1004FC92E /* NetworkActivityLogger.swift */; };
 		AB2A9A571DBB4EC9004FC92E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB2A9A471DBB4E8A004FC92E /* Alamofire.framework */; };
@@ -80,7 +79,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		51084F3A279AF0EE005618E5 /* DBoxNetworkLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBoxNetworkLog.swift; sourceTree = "<group>"; };
 		AB2A9A2B1DBB4600004FC92E /* AlamofireNetworkActivityLogger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlamofireNetworkActivityLogger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB2A9A2E1DBB4600004FC92E /* AlamofireNetworkActivityLogger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlamofireNetworkActivityLogger.h; sourceTree = "<group>"; };
 		AB2A9A2F1DBB4600004FC92E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -160,7 +158,6 @@
 				AB2A9A2E1DBB4600004FC92E /* AlamofireNetworkActivityLogger.h */,
 				AB2A9A2F1DBB4600004FC92E /* Info.plist */,
 				AB2A9A851DBB5522004FC92E /* Info-tvOS.plist */,
-				51084F3A279AF0EE005618E5 /* DBoxNetworkLog.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -434,7 +431,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				51084F3B279AF0EE005618E5 /* DBoxNetworkLog.swift in Sources */,
 				AB2A9A3A1DBB46C1004FC92E /* NetworkActivityLogger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
